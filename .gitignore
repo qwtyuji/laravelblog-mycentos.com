@@ -1,13 +1,12 @@
 vendor/
 node_modules/
 npm-debug.log
-
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
+.idea/
 
 # Laravel 5 & Lumen specific
 public/storage
+public/uploads
+
 public/hot
 storage/*.key
 .env.*.php
