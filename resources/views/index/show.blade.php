@@ -1,4 +1,9 @@
 @extends('index/base')
+@section('title')
+    <title>{{$article->title}}-Mycentos Blog</title>
+    <meta name="description" content="{{$article->keywords}}" />
+    <meta name="keywords" content="{{$article->description}}" />
+@endsection
 @section('content')
     <link rel="stylesheet" href="/vendor/editor.md/css/editormd.preview.css" />
     <article class="article">
@@ -28,7 +33,7 @@
                                 <h2>
                                     {{$article->title}}
                                 </h2>
-                                <span class="text-muted"><i class="fa fa-clock-o"></i> 28th Oct 2015</span>
+                                <span class="text-muted"><i class="fa fa-clock-o"></i>{{$article->updated_at}}</span>
                             
                             </div>
                             <div class="article-content editormd-preview-theme-dark" id="contentView">

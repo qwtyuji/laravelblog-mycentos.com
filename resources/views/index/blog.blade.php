@@ -1,4 +1,9 @@
 @extends('index/base')
+@section('title')
+    <title>{{$categoryData->name}} - Mycentos Blog</title>
+    <meta name="keywords" content="{{$categoryData->keywords}}" />
+    <meta name="description" content="{{$categoryData->description}}" />
+@endsection
 @section('content')
     <section id="content" class="container">
         <div class="row">
@@ -54,7 +59,7 @@
          * 处理导航高亮
          */
         $(function () {
-            var cateid = '#nav-'+{!! $category_id !!}
+            var cateid = '#nav-' + {!! $category_id !!}
            console.log(cateid);
             $(cateid).addClass('active').siblings().removeClass('active');
         })

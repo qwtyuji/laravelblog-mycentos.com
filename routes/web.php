@@ -10,8 +10,28 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'IndexController@index');
+
+Route::get('/excel',function (){
+    $export_file_name = 'me';
+    Excel::create($export_file_name, function ($excel) {
+        $excel->sheet('Sheetname', function ($sheet) {
+            $sheet->appendRow(['data 1', 'data 2']);
+            $sheet->appendRow(['data 3', 'data 4']);
+            $sheet->appendRow(['data 5', 'data 6']);
+        });
+    })->download('xls');
+
+// 导出 Excel 并存储到指定目录
+//    Excel::create($export_file_name, function ($excel) {
+//        $excel->sheet('Sheetname', function ($sheet) {
+//            $sheet->appendRow(['data 1', 'data 2']);
+//            $sheet->appendRow(['data 3', 'data 4']);
+//            $sheet->appendRow(['data 5', 'data 6']);
+//        });
+//    })->store('xls', $object_path);
+});
+
 Route::get('/article/{id}.html', 'IndexController@show');
 Route::get('/article/{id}', 'IndexController@show');
 Route::get('/search/{q?}', 'IndexController@search');

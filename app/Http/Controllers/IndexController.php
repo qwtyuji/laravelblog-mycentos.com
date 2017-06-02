@@ -43,7 +43,7 @@ class IndexController extends Controller
         $category_id = "0";
         $article =$this->article->with('category','tags')->orderby('id','sec')->where('title','like','%'.$q.'%')->get();
         $count = $article->count();
-        return view('index.blog',compact('article','count','category_id'));
+        return view('index.index',compact('article','count','category_id'));
 
     }
 
@@ -57,17 +57,17 @@ class IndexController extends Controller
         $article = Cache::remember('article', 10, function() {
             return $this->article->with('category','tags','comments')->orderby('id','sec')->get();
         });
-        return view('index.blog',compact('article','category_id'));
+        return view('index.index',compact('article','category_id'));
     }
     /**
      * 显示列表页
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function category($category_id)
-    {
+    {   $categoryData = $this->category->find($category_id);
         $category_id_array = $this->category->category_id_and_son($category_id);
         $article =$this->article->whereIn('category_id',$category_id_array)->orderby('id','sec')->with('category','tags')->get();
-        return view('index.blog',compact('article','category_id'));
+        return view('index.blog',compact('article','category_id','categoryData'));
     }
 
     /**
